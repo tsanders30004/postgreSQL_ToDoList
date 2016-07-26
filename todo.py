@@ -9,8 +9,12 @@ app = Flask('MyApp')
 
 @app.route('/')
 def home():
-    query = db.query("select id, task, complete from tasks order by task;")
-    return render_template('list.html', title='Task List', tasks_from_database=query.namedresult())
+    query1 = db.query("select id, task, complete from tasks order by task;")
+    query2 = db.query("select case when complete=True then 'Complete Tasks:' when complete = False then 'Open Tasks:' end as status, count(complete) from tasks group by complete;")
+    return render_template('list.html', title='Task List', tasks_from_database=query1.namedresult(), statistics=query2.namedresult())
+
+    # query = db.query("select id, task, complete from tasks order by task;")
+    # return render_template('list.html', title='Task List', tasks_from_database=query.namedresult())
 
 @app.route('/add', methods=['POST'])
 def add():

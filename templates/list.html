@@ -9,8 +9,9 @@
 </head>
 
 <body>
-     <h1>Task List</h1>
+
      <form class="task_table" action="/complete" method="POST">
+          <h1>Task List</h1>
           <table class="table-striped">
                <tr class="row_header">
                     <td>Task ID</td>
@@ -31,10 +32,19 @@
           <!-- <button class="btn btn-success" type="submit">Mark As Complete</button> -->
           <button class="btn btn-success" type="submit" name="complete">Mark As Complete</button>
           <button class="btn btn-danger"  type="submit" name="delete">Delete</button>
+          <br><br>
+          <h1>Statistics</h1>
+          <table class="table-striped">
+               {% for onetask in statistics %}
+               <tr>
+                    <td class="row_header">{{onetask.status}}</td><td>{{onetask.count}}</td>
+               </tr>
+               {% endfor %}
+          </table>
      </form>
 
-     <h1>Add Task</h1>
      <form class="task_table" action="/add" method="POST">
+          <h1>Add Task</h1>
           <label>New Task:</label>
           <input type="text" name="newtask">
           <button class="btn btn-warning" type="submit">Add Task</button>
