@@ -1,0 +1,13 @@
+body {
+     font-family: Verdana;
+}
+table {
+     border:  1px solid black;
+}
+.row_header {
+     font-weight: bold;
+}
+td {
+     padding-left: 1em;
+     padding-right: 1em;
+}
