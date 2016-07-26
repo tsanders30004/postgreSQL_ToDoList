@@ -10,28 +10,34 @@
 
 <body>
      <h1>Task List</h1>
-     <form method="POST">
+     <form class="task_table" action="/complete" method="POST">
           <table class="table-striped">
                <tr class="row_header">
                     <td>Task ID</td>
                     <td>Task Description</td>
-                    <td>Complete?</td>
+                    <td>Complete Status</td>
+                    <td>Mark as Complete</td>
                </tr>
                {% for onetask in tasks_from_database%}
                <tr>
                     <td>{{onetask.id}}</td>
                     <td>{{onetask.task}}</td>
                     <td>{{onetask.complete}}</td>
+                    <td><input type="checkbox" name="{{onetask.id}}"></td>
                </tr>
                {% endfor %}
           </table>
+          <br>
+          <!-- <button class="btn btn-success" type="submit">Mark As Complete</button> -->
+          <button class="btn btn-success" type="submit" name="complete">Mark As Complete</button>
+          <button class="btn btn-danger"  type="submit" name="delete">Delete</button>
      </form>
 
      <h1>Add Task</h1>
-     <form action="/add" method="POST">
+     <form class="task_table" action="/add" method="POST">
           <label>New Task:</label>
           <input type="text" name="newtask">
-          <button class="btn btn-success" type="submit">Add Task</button>
+          <button class="btn btn-warning" type="submit">Add Task</button>
      </form>
 
      <script src="/static/jquery.js"></script>
